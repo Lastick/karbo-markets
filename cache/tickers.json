@@ -1,0 +1,59 @@
+{
+  "name": "karbo-markets",
+  "version": "1.0",
+  "status": true,
+  "tickers": {
+    "time": 1504092247,
+    "pairs" [
+      {
+        "id": 0,
+        "name": "KRB/BTC",
+        "buy_active": 0,
+        "buy_effective": 0,
+        "sell_active": "0,
+        "sell_effective": 0,
+        "status": false
+      },
+
+      {
+        "id": 1,
+        "name": "KRB/XMR",
+        "buy_active": 0,
+        "buy_effective": 0,
+        "sell_active": "0,
+        "sell_effective": 0,
+        "status": false
+      },
+
+      {
+        "id": 2,
+        "name": "KRB/USD",
+        "buy_active": 0,
+        "buy_effective": 0,
+        "sell_active": "0,
+        "sell_effective": 0,
+        "status": false
+      },
+
+      {
+        "id": 3,
+        "name": "KRB/UAH",
+        "buy_active": 2.771,
+        "buy_effective": 2.715174,
+        "sell_active": "2.84,
+        "sell_effective": 2.748583,
+        "status": true
+      },
+
+      {
+        "id": 4,
+        "name": "KRB/RUR",
+        "buy_active": 0,
+        "buy_effective": 0,
+        "sell_active": "0,
+        "sell_effective": 0,
+        "status": false
+      }
+    ]
+  }
+}

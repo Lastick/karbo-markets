@@ -1,0 +1,62 @@
+{
+  "name": "karbo-markets",
+  "ver": "1.0",
+
+  "db": {
+          "host": "127.0.0.1",
+          "type": "mysql",
+          "name": "markets",
+          "user": "markets",
+          "pass": "qwerty"
+        },
+
+  "orders": {
+              "effective": 3,
+              "interval": 300
+            },
+
+  "pairs": [
+             {
+               "text": "KRB/BTC",
+               "id": 0,
+               "default": true
+             },
+
+             {
+               "text": "KRB/XMR",
+               "id": 1,
+               "default": false
+             },
+
+             {
+               "text": "KRB/USD",
+               "id": 2,
+               "default": false
+             },
+
+             {
+               "text": "KRB/UAH",
+               "id": 3,
+               "default": false
+             },
+
+             {
+               "text": "KRB/RUR",
+               "id": 4,
+               "default": false
+             }
+           ],
+
+  "exchanges": [
+                 {
+                   "name": "BTC TRADE UA",
+                   "url": "https://btc-trade.com.ua/index.html",
+                   "logo": "btc-trade.png",
+                   "api": "https://btc-trade.com.ua/api/",
+                   "pairs": [3],
+                   "parser": "btc-trade",
+                   "id": 0,
+                   "active": true
+                 }
+               ]
+}
