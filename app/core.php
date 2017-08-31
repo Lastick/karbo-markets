@@ -8,6 +8,7 @@ define('CONFIG', 'config.json');
 require_once('libs/db.php');
 require_once('libs/http_client.php');
 require_once('libs/tickers.php');
+require_once('libs/charts.php');
 
 
 class markets {
@@ -15,11 +16,13 @@ class markets {
   private $config = NULL;
   private $db = NULL;
   private $tickers = NULL;
+  private $charts = NULL;
 
   function __construct(){
     $this->config = json_decode(file_get_contents(CONFIG), true);
     $this->db = new db($this->config['db']['host'], $this->config['db']['name'], $this->config['db']['user'], $this->config['db']['pass']);
     $this->tickers = new tickers($this->config['name'], $this->config['ver'], CACHE . '/tickers.json', $this->config['pairs']);
+    $this->charts = new charts($this->config['name'], $this->config['ver'], $this->db, CACHE, $this->config['pairs']);
   }
 
   private function getExchangeById($id){
@@ -186,7 +189,7 @@ class markets {
         $sell_effective = 0;
         $n = 0;
         foreach ($orders['orders'] as $order){
-          if ($order['pair_id'] == $pair_id and $order['service_id'] != 0){
+          if ($order['pair_id'] == $pair_id){
             $buy_active_array[] = $order['buy_active'];
             $buy_effective_array[] = $order['buy_effective'];
             $sell_active_array[] = $order['sell_active'];
@@ -237,13 +240,15 @@ class markets {
     switch ($action){
       case '':
       case 'tickers':
-      $action_result = $this->tickers->show();
-      $data['content_type'] = $action_result['content_type'];
-      $data['result'] = $action_result['data'];;
-      break;
-    case 'FLY':
-      //echo "FLY";
-      break;
+        $action_result = $this->tickers->show();
+        $data['content_type'] = $action_result['content_type'];
+        $data['result'] = $action_result['data'];;
+        break;
+      case 'charts':
+        $action_result = $this->charts->show();
+        $data['content_type'] = $action_result['content_type'];
+        $data['result'] = $action_result['data'];;
+        break;
   }
     //$this->db->connect();
     //$this->db->close();

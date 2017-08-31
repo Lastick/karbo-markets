@@ -3,14 +3,14 @@
   "version": "1.0",
   "status": true,
   "tickers": {
-    "time": 1504092247,
-    "pairs" [
+    "time": 1504184888,
+    "pairs": [
       {
         "id": 0,
         "name": "KRB/BTC",
         "buy_active": 0,
         "buy_effective": 0,
-        "sell_active": "0,
+        "sell_active": 0,
         "sell_effective": 0,
         "status": false
       },
@@ -20,7 +20,7 @@
         "name": "KRB/XMR",
         "buy_active": 0,
         "buy_effective": 0,
-        "sell_active": "0,
+        "sell_active": 0,
         "sell_effective": 0,
         "status": false
       },
@@ -30,7 +30,7 @@
         "name": "KRB/USD",
         "buy_active": 0,
         "buy_effective": 0,
-        "sell_active": "0,
+        "sell_active": 0,
         "sell_effective": 0,
         "status": false
       },
@@ -38,10 +38,10 @@
       {
         "id": 3,
         "name": "KRB/UAH",
-        "buy_active": 2.771,
-        "buy_effective": 2.715174,
-        "sell_active": "2.84,
-        "sell_effective": 2.748583,
+        "buy_active": 2.78,
+        "buy_effective": 2.6979175,
+        "sell_active": 2.9,
+        "sell_effective": 2.9,
         "status": true
       },
 
@@ -50,7 +50,7 @@
         "name": "KRB/RUR",
         "buy_active": 0,
         "buy_effective": 0,
-        "sell_active": "0,
+        "sell_active": 0,
         "sell_effective": 0,
         "status": false
       }

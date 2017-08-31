@@ -23,7 +23,7 @@ class tickers {
     $build .= "  \"status\": true,\n";
     $build .= "  \"tickers\": {\n";
     $build .= "    \"time\": " . time() . ",\n";
-    $build .= "    \"pairs\" [\n";
+    $build .= "    \"pairs\": [\n";
     foreach ($this->pairs as $key=>$pair){
       $pair_id = $pair['id'];
       $pair_name = $pair['text'];
@@ -51,7 +51,7 @@ class tickers {
       $build .= "        \"name\": \"" . $pair_name . "\",\n";
       $build .= "        \"buy_active\": " . $buy_active . ",\n";
       $build .= "        \"buy_effective\": " . $buy_effective . ",\n";
-      $build .= "        \"sell_active\": \"" . $sell_active . ",\n";
+      $build .= "        \"sell_active\": " . $sell_active . ",\n";
       $build .= "        \"sell_effective\": " . $sell_effective . ",\n";
       $build .= "        \"status\": " . var_export($ticker_status, true) . "\n";
       $build .= "      }" . $sub . "\n";

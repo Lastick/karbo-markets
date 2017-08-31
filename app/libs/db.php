@@ -60,6 +60,14 @@ class db {
     $sql_q = "";
     $sql_q  = "SELECT * FROM `markets` WHERE";
     $sql_q .= " (`time` > '" . date('Y-m-d H:i:s', $time_min) . "' AND `time` < '" . date('Y-m-d H:i:s', $time_max) . "')";
+    if ($service_id === NULL){
+      $sql_q .= " AND `service_id` > 0";
+      } else {
+      $sql_q .= " AND `service_id` = " . $service_id;
+    }
+    if ($pair_id !== NULL){
+      $sql_q .= " AND `pair_id` = " . $pair_id;
+    }
     $query = mysqli_query($this->link, $sql_q);
     $result = array();
     $result['status'] = false;
