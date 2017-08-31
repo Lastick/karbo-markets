@@ -12,7 +12,7 @@
 <div id="container" style="min-width: 310px; max-width: 1440px; height: 600px; margin: 0 auto"></div>
 
 <script>
-$.getJSON('http://www.titan-machine.pp.ua/scripts/dev/markets/api.php?action=charts', function (data) {
+$.getJSON('api.php?action=charts', function (data) {
 
     Highcharts.setOptions({ global: { useUTC: false } });
 
