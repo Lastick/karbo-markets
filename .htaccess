@@ -1,0 +1,13 @@
+AddType application/vnd.ms-fontobject eot
+AddType font/opentype otf
+AddType application/x-font-ttf .ttf
+AddType application/font-woff .woff
+AddType application/font-woff2 .woff2
+
+Allow from All
+
+AddDefaultCharset UTF-8
+AddCharset utf-8 .html .css .js
+
+Options -Indexes
+

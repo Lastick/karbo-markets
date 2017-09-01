@@ -31,10 +31,10 @@ class charts {
         $sell_effective['data'][$key] = array($date, $order['sell_effective']);
       }
     }
-    $buy_active['type'] = 'area';
-    $buy_effective['type'] = 'area';
-    $sell_active['type'] = 'area';
-    $sell_effective['type'] = 'area';
+    $buy_active['type'] = 'spline';
+    $buy_effective['type'] = 'spline';
+    $sell_active['type'] = 'spline';
+    $sell_effective['type'] = 'spline';
     $buy_active['name'] = 'Buy active';
     $buy_effective['name'] = 'Buy effective';
     $sell_active['name'] = 'Sell active';

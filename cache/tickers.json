@@ -3,7 +3,7 @@
   "version": "1.0",
   "status": true,
   "tickers": {
-    "time": 1504184888,
+    "time": 1504305247,
     "pairs": [
       {
         "id": 0,
@@ -38,10 +38,10 @@
       {
         "id": 3,
         "name": "KRB/UAH",
-        "buy_active": 2.78,
-        "buy_effective": 2.6979175,
-        "sell_active": 2.9,
-        "sell_effective": 2.9,
+        "buy_active": 2.75,
+        "buy_effective": 2.725273,
+        "sell_active": 2.84,
+        "sell_effective": 2.880141,
         "status": true
       },
 
