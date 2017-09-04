@@ -59,7 +59,7 @@ class db {
     $query = NULL;
     $sql_q = "";
     $sql_q  = "SELECT * FROM `markets` WHERE";
-    $sql_q .= " (`time` > '" . date('Y-m-d H:i:s', $time_min) . "' AND `time` < '" . date('Y-m-d H:i:s', $time_max) . "')";
+    $sql_q .= " (`time` >= '" . date('Y-m-d H:i:s', $time_min) . "' AND `time` <= '" . date('Y-m-d H:i:s', $time_max) . "')";
     if ($service_id === NULL){
       $sql_q .= " AND `service_id` > 0";
       } else {
@@ -87,6 +87,28 @@ class db {
     }
     mysqli_free_result($query);
     if (count($result['orders']) > 0) $result['status'] = true;
+    return $result;
+  }
+
+  public function getSizeMarkets(){
+    $query = NULL;
+    $sql_q = "";
+    $sql_q  = "SELECT (SELECT `time` FROM `markets` ORDER BY time LIMIT 1) AS `first`,";
+    $sql_q .= "  (SELECT `time` FROM `markets` ORDER BY `time` DESC LIMIT 1) AS `last`";
+    $query = mysqli_query($this->link, $sql_q);
+    $result = array();
+    $result['status'] = false;
+    $result['first'] = 0;
+    $result['last'] = 0;
+    $data = mysqli_fetch_assoc($query);
+    if (is_array($data)){
+      if (isset($data['first']) and isset($data['last'])){
+        $result['status'] = true;
+        $result['first'] = strtotime($data['first']);
+        $result['last'] = strtotime($data['last']);
+      }
+    }
+    mysqli_free_result($query);
     return $result;
   }
 

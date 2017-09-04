@@ -9,6 +9,7 @@ require_once('libs/db.php');
 require_once('libs/http_client.php');
 require_once('libs/tickers.php');
 require_once('libs/charts.php');
+require_once('libs/page.php');
 
 
 class markets {
@@ -17,12 +18,14 @@ class markets {
   private $db = NULL;
   private $tickers = NULL;
   private $charts = NULL;
+  private $page = NULL;
 
   function __construct(){
     $this->config = json_decode(file_get_contents(CONFIG), true);
     $this->db = new db($this->config['db']['host'], $this->config['db']['name'], $this->config['db']['user'], $this->config['db']['pass']);
     $this->tickers = new tickers($this->config['name'], $this->config['ver'], CACHE . '/tickers.json', $this->config['pairs']);
     $this->charts = new charts($this->config['name'], $this->config['ver'], $this->db, CACHE, $this->config['pairs']);
+    $this->page = new page($this->config['name'], $this->config['ver'], $this->db, CACHE);
   }
 
   private function getExchangeById($id){
@@ -245,17 +248,25 @@ class markets {
         $data['result'] = $action_result['data'];;
         break;
       case 'charts':
-        $action_result = $this->charts->show();
+        if (isset($_GET['start']) and isset($_GET['end'])){
+          $action_result = $this->charts->show($_GET['start'], $_GET['end']);
+        } else {
+          $action_result = $this->charts->show();
+        }
         $data['content_type'] = $action_result['content_type'];
-        $data['result'] = $action_result['data'];;
+        $data['result'] = $action_result['data'];
         break;
-  }
-    //$this->db->connect();
-    //$this->db->close();
+      case 'page':
+        $action_result = $this->page->show();
+        $data['content_type'] = $action_result['content_type'];
+        $data['result'] = $action_result['data'];
+        break;
+    }
     header('Access-Control-Allow-Origin: *');
     header($data['content_type']);
     echo $data['result'];
   }
+
 }
 
 

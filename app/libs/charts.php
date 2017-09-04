@@ -46,10 +46,14 @@ class charts {
     return json_encode($result_array);
   }
 
-  public function show(){
+  public function show($start = NULL, $end = NULL){
     $result = array();
     $this->db->connect();
-    $orders = $this->db->getMarkets(time() - 86400, time(), 0, 3);
+    if ($start !== NULL and $end !== NULL){
+      $orders = $this->db->getMarkets($start, $end, 0, 3);
+    } else {
+      $orders = $this->db->getMarkets(time() - 86400, time(), 0, 3);
+    }
     $this->db->close();
     $result['content_type'] = 'Content-Type: text/json; charset=utf-8';
     $result['data'] = $this->createHighchartsJSON($orders);
