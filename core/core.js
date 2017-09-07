@@ -1,6 +1,9 @@
 
 // Karbo Markets Core
 
+var pages = 'pages';
+var pages_img = 'pages/imgs';
+
 var loop_interval = 2;
 var last_tab_show = 'view';
 var app_name = '';
@@ -25,6 +28,38 @@ var ChartLoadTrigerOctet = true;
 var ChartLoadTrigerZoom = true;
 var viewInit = true;
 
+
+function BB(bb){
+  var html_segm = '';
+  html_segm = bb;
+  html_segm = html_segm.replace(/\[b\](.*?)\[\/b\]/g, '<strong>$1</strong>');
+  html_segm = html_segm.replace(/\[url=([^\s\]]+)\s*\](.*(?=\[\/url\]))\[\/url\]/g, '<a href="$1" target="_blank">$2</a>');
+  html_segm = html_segm.replace(/\n/g, '<br />');
+  html_segm = html_segm.replace(/\[copy\]/g, '&copy;');
+  html_segm = '<p>' + html_segm + '</p>';
+  return html_segm;
+}
+
+function PageController(action, page, data){
+  if (action == 'show'){
+    $.ajax({
+      url: './' + pages + '/' + page + '.bb',
+      async: false,
+      success: function (data){
+        PageController('doShow', page, data);
+      }
+    });
+  }
+  if (action == 'hide'){
+    $('#' + page).text('');
+  }
+  if (action == 'doShow'){
+    var html_segm = '';
+    html_segm = BB(data)
+    $('#' + page).html(html_segm);
+    //$('#' + page).text(html_segm);
+  }
+}
 
 function ChartsDataCompile(){
   var arr_len = ChartsData[0].data.length;
@@ -222,21 +257,25 @@ function view_hide(){
 }
 
 function about_show(){
+  PageController('show', 'about', null);
 }
 
 function about_loop(){
 }
 
 function about_hide(){
+  PageController('hide', 'about', null);
 }
 
-function contact_show(){
+function support_show(){
+  PageController('show', 'support', null);
 }
 
-function contact_loop(){
+function support_loop(){
 }
 
-function contact_hide(){
+function support_hide(){
+  PageController('hide', 'support', null);
 }
 
 

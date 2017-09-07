@@ -3,11 +3,16 @@ AddType font/opentype otf
 AddType application/x-font-ttf .ttf
 AddType application/font-woff .woff
 AddType application/font-woff2 .woff2
+AddType text/plain .bb
 
 Allow from All
 
 AddDefaultCharset UTF-8
-AddCharset utf-8 .html .css .js
+AddCharset utf-8 .html .css .js .bb
 
 Options -Indexes
+
+<Files "config.json">
+  Deny from All
+</Files>
 
