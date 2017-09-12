@@ -22,12 +22,49 @@ var CursorMinTime = 0;
 var CursorMaxTime = 0;
 var StartLimit = 0;
 var EndLimit = 0;
+var tickers = null;
 var ChartUpdateTriger = true;
 var ChartLoadTriger = true;
 var ChartLoadTrigerOctet = true;
 var ChartLoadTrigerZoom = true;
 var viewInit = true;
 
+
+function TickerFormater(ticker){
+  var html = '';
+  html = '<strong>' + ticker.name + '</strong>' + '<br />' + ticker.sell_active.toFixed(4) + '/' + ticker.buy_active.toFixed(4);
+  return html;
+}
+
+function TickersController(action){
+  if (action == 'update'){
+    $('.tickets .well').text(function(index){
+      if (tickers != null){
+        if (tickers.status){
+          var s = 5;
+          var n = s - index;
+          if (n >= 0 && n < tickers.pairs.length){
+            if (tickers.pairs[n].status){
+              $(this).css('opacity', '1.0');
+              } else {
+              $(this).css('opacity', '0.5');
+            }
+            $('p', this).html(TickerFormater(tickers.pairs[n]));
+            } else {
+            $(this).css('opacity', '0.0');
+            $('p', this).html('&nbsp;');
+          }
+        }
+      }
+    });
+  }
+  if (action == 'hide'){
+    $('.tickets .well').text(function(index){
+      $(this).css('opacity', '0.5');
+      $('p', this).text('no data');
+    });
+  }
+}
 
 function BB(bb){
   var html_segm = '';
@@ -248,12 +285,14 @@ function view_loop(){
     NewZoomAdd();
     NewOctetAdd();
     DetectNewOctet();
+    TickersController('update');
   }
 }
 
 function view_hide(){
   chart.destroy();
   viewInit = true;
+  TickersController('hide');
 }
 
 function about_show(){
@@ -283,6 +322,7 @@ function getStat(){
   $.getJSON('api.php?action=page', function (data){
     app_name = data.name;
     app_ver = data.ver;
+    tickers = data.tickers;
     if (data.status){
       app_status = true;
       DataFirstTime = data.size_markets.first;

@@ -14,13 +14,14 @@ class page {
     $this->db = $db;
   }
 
-  private function stat(){
+  private function stat($tickers){
     $result = '';
     $stat_array = array();
     $stat_array['name'] = $this->name;
     $stat_array['ver'] = $this->ver;
     $stat_array['status'] = false;
     $stat_array['size_markets'] = array();
+    $stat_array['tickers'] = $tickers;
     $this->db->connect();
     $SizeMarkets = $this->db->getSizeMarkets();
     $this->db->close();
@@ -32,10 +33,17 @@ class page {
     return json_encode($stat_array);
   }
 
-  public function show(){
+  public function show($data){
     $result = array();
+    $tickers = array();
+    if ($data['status']){
+      $tickers = $data['tickers'];
+      $tickers['status'] = true;
+      } else {
+      $tickers['status'] = false;
+    }
     $result['content_type'] = 'Content-Type: text/plain; charset=utf-8';
-    $result['data'] = $this->stat();
+    $result['data'] = $this->stat($tickers);
     return $result;
   }
 

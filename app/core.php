@@ -257,7 +257,7 @@ class markets {
         $data['result'] = $action_result['data'];
         break;
       case 'page':
-        $action_result = $this->page->show();
+        $action_result = $this->page->show($this->tickers->getTickers());
         $data['content_type'] = $action_result['content_type'];
         $data['result'] = $action_result['data'];
         break;

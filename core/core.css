@@ -11,6 +11,15 @@ body > .container {
   padding: 60px 15px 0;
 }
 
+.tickets {
+  margin-top: 20px;
+}
+
+.tickets .well {
+  padding: 15px;
+  opacity: 0.5;
+}
+
 #footer {
   position: absolute;
   bottom: 0;
