@@ -6,7 +6,7 @@ class charts {
   private $ver = '';
   private $path = '';
   private $pairs = array();
-  private $db = NULL;  
+  private $db = NULL;
 
   function __construct($name, $ver, $db, $path, $pairs){
     $this->name = $name;
@@ -49,7 +49,11 @@ class charts {
   public function show($start = NULL, $end = NULL){
     $result = array();
     $this->db->connect();
+    $start = (int) $start;
+    $end = (int) $end;
     if ($start !== NULL and $end !== NULL){
+      $t_max = 60 * 60 * 24 * 30 * 2;
+      if ($end - $start > $t_max) $start = $end - $t_max;
       $orders = $this->db->getMarkets($start, $end, 0, 3);
     } else {
       $orders = $this->db->getMarkets(time() - 86400, time(), 0, 3);
