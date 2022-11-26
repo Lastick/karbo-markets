@@ -154,6 +154,8 @@ function ChartLoader(NewDataFirstTime, NewDataLastTime, arr_targ){
     ChartLoadTrigerZoom = false;
   }
   $.getJSON('api.php?action=charts&start=' + NewDataFirstTime + '&end=' + NewDataLastTime, function(data){
+    // TODO need fix
+    if (!data[0].hasOwnProperty('data')) return;
     if (arr_targ == 'octet'){
       ChartsDataOctet = null;
       ChartsDataOctet = data;
