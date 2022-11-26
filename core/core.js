@@ -127,7 +127,7 @@ function ChartsDataCompile(){
         if (ZoomLastTime < ChartsData[a].data[n][0]){
           data[n_o] = [ChartsData[a].data[n][0], ChartsData[a].data[n][1]];
           n_o++;
-        }        
+        }
       }
       if (a == 3) NewZoomTriger = false;
     }
@@ -171,7 +171,7 @@ function ChartLoader(NewDataFirstTime, NewDataLastTime, arr_targ){
 }
 
 function DetectNewOctet(){
-  if (DataLastTimeOld == 0) DataLastTimeOld = DataLastTime; 
+  if (DataLastTimeOld == 0) DataLastTimeOld = DataLastTime;
   if (DataLastTime > DataLastTimeOld){
     console.log('view: new octet found');
     NewOctetTriger = true;
@@ -344,7 +344,7 @@ function TabDispatcher(page, action){
     window[func_name]();
     if (action == 'show') last_tab_show = page;
     } catch(e) {
-    alert('Dispatcher: ' + e.message); 
+    alert('Dispatcher: ' + e.message);
   }
 }
 
