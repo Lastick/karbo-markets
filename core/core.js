@@ -201,6 +201,17 @@ function NewZoomAdd(){
   }
 }
 
+function SelZoomButton(){
+  const button_name = '14d';
+  for (var i = 0; i < chart.rangeSelector.buttons.length; i++){
+    var el = chart.rangeSelector.buttons[i];
+    if (el.element.lastElementChild.innerHTML == button_name){
+      el.element.onclick();
+      break;
+    }
+  }
+}
+
 function charts_init(){
   $.getJSON('api.php?action=charts&start=' + Math.round(DataFirstTime / 1000) + '&end=' + Math.round(DataLastTime / 1000), function (data){
     ChartsData = data;
@@ -268,6 +279,13 @@ function charts_init(){
       },
       yAxis: {
         floor: 0
+      },
+      chart: {
+        events: {
+          load: function() {
+            setTimeout(function() { SelZoomButton }, 1000)
+          }
+        }
       },
       series: data
     });
